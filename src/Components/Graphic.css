@@ -1,0 +1,12 @@
+.graphic-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+

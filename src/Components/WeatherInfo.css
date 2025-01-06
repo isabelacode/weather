@@ -1,0 +1,36 @@
+.info {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 15% 0 15%;
+}
+
+.groupJoining {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.groupOne {
+    display: flex;
+
+    align-items: center;
+    margin-right: 25px;
+}
+
+.groupOne p {
+    font-size: 60px;
+}
+
+.groupOne img {
+    height: 100px;
+    object-fit: cover;
+}
+
+.groupthree {
+    display: flex;
+    justify-content: center;
+
+
+    flex-direction: column;
+}
