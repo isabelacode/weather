@@ -44,7 +44,10 @@ export const WeatherInfo = ({ city }) => {
       {error && <p className="error-message">{error}</p>}
       {weather && (
         <div className="weather-info">
-          <h2>{weather.location.name}, {weather.location.country}</h2>
+          <div className="title">
+            <h2 className="titles">{weather.location.name}, {weather.location.country}</h2>
+          </div>
+          
           {selectedWeatherData ? (
             <div className="info">
               <div className="groupJoining">
