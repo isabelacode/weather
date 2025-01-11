@@ -105,12 +105,12 @@ export const Graphic = ({ weatherData, setSelectedWeatherData }) => {
                                 ? "Chuva"
                                 : conditionText === "Cloudy"
                                     ? "Nuvens"
-                                    : conditionText; 
+                                    : conditionText;
 
                         setSelectedWeatherData({
                             hour: selectedHour.time.split(' ')[1],
                             temperature: selectedHour.temp_c,
-                            condition: readableCondition, 
+                            condition: readableCondition,
                             humidity: selectedHour.humidity,
                             windSpeed: selectedHour.wind_kph,
                             icon: selectedHour.condition.icon

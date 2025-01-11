@@ -10,3 +10,8 @@ canvas {
     height: auto !important;
 }
 
+@media (max-width: 768px) {
+    .graphic-container {
+        max-width: 90%;
+    }
+}

@@ -5,16 +5,16 @@
     padding: 20px;
     max-width: 90%;
     margin: 20px auto;
-   
 }
+
 .forecast-info ul {
     display: flex;
-    padding: 10px;
+    padding: 15px;
     list-style-type: none;
     margin: 0;
     padding: 0;
     justify-content: space-between;
-    
+
 }
 
 .forecast-info h2 {
@@ -35,8 +35,7 @@
 
 .forecast-day {
     list-style: none;
-    margin: 10px 0;
-    padding: 15px;
+    flex: 1 1 calc(20% - 10px);
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #fff;
@@ -65,4 +64,13 @@
     height: 50px;
 }
 
+@media (max-width: 768px) {
+    .forecast-info ul {
+        flex-direction: column;
+        gap: 15px;
+    }
 
+    .forecast-day {
+        width: 100%;
+    }
+}

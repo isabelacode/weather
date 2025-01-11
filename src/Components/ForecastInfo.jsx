@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './ForecastInfo.css';
 
-const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
-
 export const ForecastInfo = ({ city }) => {
     const [forecast, setForecast] = useState(null);
     const [error, setError] = useState(null);
@@ -13,11 +11,10 @@ export const ForecastInfo = ({ city }) => {
             try {
                 setError(null);
                 const response = await axios.get(
-                    `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${query}&days=6&aqi=no&alerts=no&lang=pt`
+                    `http://fedora-1:5000/api/forecast?query=${query}`
                 );
-               
-                const futureForecast = response.data.forecast.forecastday.slice(1);
-                setForecast(futureForecast);
+
+                setForecast(response.data);
             } catch (err) {
                 setError('Não foi possível obter a previsão. Verifique o nome da cidade ou a permissão de localização.');
             }
@@ -41,7 +38,7 @@ export const ForecastInfo = ({ city }) => {
     const formatDayOfWeek = (date) => {
         const daysOfWeek = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
         const [year, month, day] = date.split('-');
-        const dayOfWeek = new Date(year, month - 1, day).getDay();  // getDay() retorna o índice do dia da semana (0 = Domingo, 6 = Sábado)
+        const dayOfWeek = new Date(year, month - 1, day).getDay();  
         return daysOfWeek[dayOfWeek];
     };
 
@@ -61,7 +58,7 @@ export const ForecastInfo = ({ city }) => {
                                 />
                                 <p>Máx: {day.day.maxtemp_c}°C / Mín: {day.day.mintemp_c}°C</p>
                                 <p>Condição: {day.day.condition.text}</p>
-                                
+
                             </li>
                         ))}
                     </ul>

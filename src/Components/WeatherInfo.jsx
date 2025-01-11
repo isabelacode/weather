@@ -3,9 +3,6 @@ import axios from 'axios';
 import './WeatherInfo.css';
 import { Graphic } from './Graphic';
 
-const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
-
-
 export const WeatherInfo = ({ city }) => {
   const [weather, setWeather] = useState(null);
   const [error, setError] = useState(null);
@@ -16,7 +13,7 @@ export const WeatherInfo = ({ city }) => {
       try {
         setError(null);
         const response = await axios.get(
-          `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${query}&aqi=no&lang=pt&days=1`
+          `http://fedora-1:5000/api/current?query=${query}`
         );
         setWeather(response.data);
       } catch (err) {

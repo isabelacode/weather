@@ -1,4 +1,4 @@
-.title{
+.title {
     font-size: 20px;
     font-weight: lighter;
     display: flex;
@@ -19,9 +19,12 @@
     text-align: center;
 }
 
+.groupTwo {
+    color: #968585
+}
+
 .groupOne {
     display: flex;
-
     align-items: center;
     margin-right: 25px;
 }
@@ -38,7 +41,38 @@
 .groupthree {
     display: flex;
     justify-content: center;
-
-
     flex-direction: column;
+    color: #968585
+}
+
+@media (max-width: 768px) {
+    .info {
+        margin: 0;
+    }
+
+    .groupJoining {
+        width: 90%;
+        display: flex;
+        text-align: start;
+        justify-content: space-between;
+    }
+
+    .groupOne p {
+        font-size: 25px;
+    }
+
+    .groupOne img {
+        height: auto;
+        object-fit: cover;
+    }
+
+    .groupthree {
+        display: none;
+    }
+
+    .groupTwo {
+        font-size: 15px;
+
+    }
+
 }
