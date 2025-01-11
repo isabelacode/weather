@@ -1,135 +1,98 @@
-import React, { useEffect, useRef } from "react";
-import { Chart } from "chart.js/auto";
-import './Graphic.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './WeatherInfo.css';
+import { Graphic } from './Graphic';
 
-export const Graphic = ({ weatherData, setSelectedWeatherData }) => {
-    const chartRef = useRef(null);
-    const chartInstance = useRef(null);
+export const WeatherInfo = ({ city }) => {
+  const [weather, setWeather] = useState(null);
+  const [error, setError] = useState(null);
+  const [selectedWeatherData, setSelectedWeatherData] = useState(null);
 
-    useEffect(() => {
-        if (!weatherData || !weatherData.forecastday[0] || !weatherData.forecastday[0].hour) {
-            console.log("Dados não encontrados ou formato errado.");
-            return;
+  useEffect(() => {
+    const fetchLocationWeather = async (query) => {
+      try {
+        setError(null);
+        const response = await axios.get(
+          `http://fedora-1:5000/api/current?query=${query}`
+        );
+        setWeather(response.data);
+      } catch (err) {
+        setError('Não foi possível obter a localização. Tente novamente!');
+      }
+    };
+
+    if (city) {
+      fetchLocationWeather(city);
+    } else {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          fetchLocationWeather(`${latitude},${longitude}`);
+        },
+        (err) => {
+          setError('Permissão de localização negada ou indisponível.');
         }
+      );
+    }
+  }, [city]); 
 
-        const hours = weatherData.forecastday[0].hour;
-        console.log("Dados das horas:", hours);
-
-        const currentTime = new Date();
-        const currentHour = currentTime.getHours();
-
-        let nextHours = hours.filter((hour) => {
-            const hourTime = new Date(hour.time);
-            return hourTime.getHours() >= currentHour && hourTime.getHours() < currentHour + 8;
-        });
-
-        if (nextHours.length < 8) {
-            const remainingHours = hours.filter((hour) => {
-                const hourTime = new Date(hour.time);
-                return hourTime.getHours() < 8;
-            });
-            nextHours.push(...remainingHours.slice(0, 8 - nextHours.length));
-        }
-
-        if (nextHours.length < 8) {
-            console.log("Não há horas suficientes para mostrar.");
-            return;
-        }
-
-        const ctx = chartRef.current ? chartRef.current.getContext("2d") : null;
-        if (!ctx) {
-            console.log("Não foi possível obter o contexto do canvas.");
-            return;
-        }
-
-        if (chartInstance.current) {
-            chartInstance.current.destroy();
-        }
-
-        chartInstance.current = new Chart(ctx, {
-            type: "line",
-            data: {
-                labels: nextHours.map((hour) => hour.time.split(' ')[1]),
-                datasets: [
-                    {
-                        label: "Temperatura",
-                        data: nextHours.map((hour) => hour.temp_c),
-                        borderColor: "#FFD700",
-                        backgroundColor: "rgba(255, 215, 0, 0.2)",
-                        tension: 0.4,
-                        fill: true,
-                        pointRadius: 3,
-                        pointBackgroundColor: "#FFD700",
-                    },
-                ],
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: false,
-                    },
-                    tooltip: {
-                        backgroundColor: "#333",
-                        bodyColor: "#fff",
-                        titleColor: "#FFD700",
-                        callbacks: {
-                            label: function (tooltipItem) {
-                                const temp = tooltipItem.raw;
-                                return `${temp} °C`;
-                            }
-                        }
-                    },
-                },
-                scales: {
-                    x: {
-                        ticks: {
-                            color: "#ccc",
-                        },
-                        grid: {
-                            display: false,
-                        },
-                    },
-                    y: {
-                        display: false,
-                    },
-                },
-                onClick: (event, elements) => {
-                    if (elements.length > 0) {
-                        const elementIndex = elements[0].index;
-                        const selectedHour = nextHours[elementIndex];
-                        const conditionText = selectedHour.condition.text;
-                        const readableCondition = conditionText === "Clear"
-                            ? "Sol"
-                            : conditionText === "Rain"
-                                ? "Chuva"
-                                : conditionText === "Cloudy"
-                                    ? "Nuvens"
-                                    : conditionText;
-
-                        setSelectedWeatherData({
-                            hour: selectedHour.time.split(' ')[1],
-                            temperature: selectedHour.temp_c,
-                            condition: readableCondition,
-                            humidity: selectedHour.humidity,
-                            windSpeed: selectedHour.wind_kph,
-                            icon: selectedHour.condition.icon
-                        });
-                    }
-                },
-            },
-        });
-
-        return () => {
-            if (chartInstance.current) {
-                chartInstance.current.destroy();
-            }
-        };
-    }, [weatherData, setSelectedWeatherData]);
-
-    return (
-        <div className="graphic-container">
-            <canvas ref={chartRef} aria-label="Gráfico de Temperatura"></canvas>
+  return (
+    <div>
+      {error && <p className="error-message">{error}</p>}
+      {weather && (
+        <div className="weather-info">
+          <div className="title">
+            <h2 className="titles">{weather.location.name}, {weather.location.country}</h2>
+          </div>
+          
+          {selectedWeatherData ? (
+            <div className="info">
+              <div className="groupJoining">
+                <div className="groupOne">
+                  <img
+                    src={selectedWeatherData.icon}
+                    alt="weather icon"
+                  />
+                  <p>{selectedWeatherData.temperature}°C</p>
+                </div>
+                <div className="groupTwo">
+                  <p>Umidade: {selectedWeatherData.humidity}%</p>
+                  <p>Vento: {selectedWeatherData.windSpeed} km/h</p>
+                </div>
+              </div>
+              <div className="groupthree">
+                <p>Hora: {selectedWeatherData.hour}</p>
+                <p>Condição: {selectedWeatherData.condition}</p>
+              </div>
+            </div>
+          ) : (
+            <div className="info">
+              <div className="groupJoining">
+                <div className="groupOne">
+                  <img
+                    src={weather.current.condition.icon}
+                    alt="weather icon"
+                  />
+                  <p>{weather.current.temp_c}°C</p>
+                </div>
+                <div className="groupTwo">
+                  <p>Umidade: {weather.current.humidity}%</p>
+                  <p>Vento: {weather.current.wind_kph} km/h</p>
+                </div>
+              </div>
+              <div className="groupthree">
+                <p>Condição: {weather.current.condition.text}</p>
+              </div>
+            </div>
+          )}
         </div>
-    );
+      )}
+      {weather && weather.forecast && weather.forecast.forecastday[0] && (
+        <Graphic
+          weatherData={weather.forecast}
+          setSelectedWeatherData={setSelectedWeatherData} 
+        />
+      )}
+    </div>
+  );
 };
