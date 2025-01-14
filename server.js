@@ -11,39 +11,39 @@ app.use(express.json());
 
 // Endpoint para buscar previsão do tempo
 app.get('/api/forecast', async (req, res) => {
-    try {
-        const { query } = req.query;
-        const apiKey = process.env.WEATHER_API_KEY;
-        
-        const response = await axios.get(
-            `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${query}&days=6&aqi=no&alerts=no&lang=pt`
-        );
+   try {
+      const { query } = req.query;
+      const apiKey = process.env.WEATHER_API_KEY;
 
-        const futureForecast = response.data.forecast.forecastday.slice(1);
-        res.json(futureForecast);
-    } catch (error) {
-        console.error('Erro ao buscar previsão:', error);
-        res.status(500).json({ error: 'Erro ao buscar previsão do tempo' });
-    }
+      const response = await axios.get(
+         `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${query}&days=6&aqi=no&alerts=no&lang=pt`
+      );
+
+      const futureForecast = response.data.forecast.forecastday.slice(1);
+      res.json(futureForecast);
+   } catch (error) {
+      console.error('Erro ao buscar previsão:', error);
+      res.status(500).json({ error: 'Erro ao buscar previsão do tempo' });
+   }
 });
 
 // Endpoint para buscar clima atual
 app.get('/api/current', async (req, res) => {
-    try {
-        const { query } = req.query;
-        const apiKey = process.env.WEATHER_API_KEY;
-        
-        const response = await axios.get(
-            `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${query}&days=1&aqi=no&alerts=no&lang=pt`
-        );
+   try {
+      const { query } = req.query;
+      const apiKey = process.env.WEATHER_API_KEY;
 
-        res.json(response.data);
-    } catch (error) {
-        console.error('Erro ao buscar clima atual:', error);
-        res.status(500).json({ error: 'Erro ao buscar clima atual' });
-    }
+      const response = await axios.get(
+         `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${query}&days=1&aqi=no&alerts=no&lang=pt`
+      );
+
+      res.json(response.data);
+   } catch (error) {
+      console.error('Erro ao buscar clima atual:', error);
+      res.status(500).json({ error: 'Erro ao buscar clima atual' });
+   }
 });
 
 app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
+   console.log(`Servidor rodando na porta ${PORT}`);
 });

@@ -46,13 +46,3 @@ Para rodar o projeto localmente, execute o comando:
 ```bash
 npm run dev
 ```
-### 6. Acesse no Navegador
-Abra seu navegador e acesse:
-```bash
-http://localhost:3000
-```
-## Configuração da API
-Certifique-se de que a API da Weather está configurada corretamente. Se necessário, atualize a URL base da API no código:
-```bash
-const API_BASE_URL = "http://fedora-1:5000/api/forecast";
-```
