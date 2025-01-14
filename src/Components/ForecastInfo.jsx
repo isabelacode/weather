@@ -57,7 +57,7 @@ export const ForecastInfo = ({ city }) => {
                                     alt={day.day.condition.text}
                                 />
                                 <p>Máx: {day.day.maxtemp_c}°C / Mín: {day.day.mintemp_c}°C</p>
-                                <p>Condição: {day.day.condition.text}</p>
+                                <p> {day.day.condition.text}</p>
 
                             </li>
                         ))}

@@ -62,7 +62,7 @@ export const WeatherInfo = ({ city }) => {
               </div>
               <div className="groupthree">
                 <p>Hora: {selectedWeatherData.hour}</p>
-                <p>Condição: {selectedWeatherData.condition}</p>
+                <p>{selectedWeatherData.condition}</p>
               </div>
             </div>
           ) : (
@@ -81,7 +81,7 @@ export const WeatherInfo = ({ city }) => {
                 </div>
               </div>
               <div className="groupthree">
-                <p>Condição: {weather.current.condition.text}</p>
+                <p>{weather.current.condition.text}</p>
               </div>
             </div>
           )}
