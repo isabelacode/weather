@@ -1,18 +1,18 @@
 .search-box {
-    padding: 10px;
-    border: none;
-    margin-top: 20px;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
+   padding: 10px;
+   border: none;
+   margin-top: 20px;
+   text-decoration: none;
+   display: flex;
+   justify-content: center;
 }
 
 .search-box button {
-    margin-left: 5px;
-    background-color: #dfe7ee;
-    border: 1px solid #9dc3e4;
+   margin-left: 5px;
+   background-color: #dfe7ee;
+   border: 1px solid #9dc3e4;
 }
 
 .search-box input {
-    padding: 5px;
+   padding: 5px;
 }

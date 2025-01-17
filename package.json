@@ -1,56 +1,56 @@
 {
-  "name": "weather-app",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "axios": "^1.7.9",
-    "chart.js": "^4.4.7",
-    "concurrently": "^9.1.2",
-    "cors": "^2.8.5",
-    "cra-template": "1.2.0",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "react": "^19.0.0",
-    "react-chartjs-2": "^5.3.0",
-    "react-dom": "^19.0.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^4.2.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "server": "node server.js",
-    "dev": "concurrently \"npm run server\" \"npm run start\"",
-    "format": "prettier --write ."
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "plugin:prettier/recommended"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "eslint": "^8.57.1",
-    "eslint-config-prettier": "^10.0.1",
-    "eslint-plugin-prettier": "^5.2.2",
-    "eslint-plugin-react": "^7.37.4",
-    "eslint-plugin-react-hooks": "^5.1.0",
-    "prettier": "^3.4.2"
-  }
+   "name": "weather-app",
+   "version": "0.1.0",
+   "private": true,
+   "dependencies": {
+      "axios": "^1.7.9",
+      "chart.js": "^4.4.7",
+      "concurrently": "^9.1.2",
+      "cors": "^2.8.5",
+      "cra-template": "1.2.0",
+      "dotenv": "^16.4.7",
+      "express": "^4.21.2",
+      "react": "^19.0.0",
+      "react-chartjs-2": "^5.3.0",
+      "react-dom": "^19.0.0",
+      "react-scripts": "5.0.1",
+      "web-vitals": "^4.2.4"
+   },
+   "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject",
+      "server": "node server.js",
+      "dev": "concurrently \"npm run server\" \"npm run start\"",
+      "format": "prettier --write ."
+   },
+   "eslintConfig": {
+      "extends": [
+         "react-app",
+         "react-app/jest",
+         "plugin:prettier/recommended"
+      ]
+   },
+   "browserslist": {
+      "production": [
+         ">0.2%",
+         "not dead",
+         "not op_mini all"
+      ],
+      "development": [
+         "last 1 chrome version",
+         "last 1 firefox version",
+         "last 1 safari version"
+      ]
+   },
+   "devDependencies": {
+      "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+      "eslint": "^8.57.1",
+      "eslint-config-prettier": "^10.0.1",
+      "eslint-plugin-prettier": "^5.2.2",
+      "eslint-plugin-react": "^7.37.4",
+      "eslint-plugin-react-hooks": "^5.1.0",
+      "prettier": "^3.4.2"
+   }
 }

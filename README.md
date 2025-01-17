@@ -25,24 +25,31 @@ git clone https://github.com/isabelacode/weather-app
 ```
 
 ### 2. Crie sua Conta na API de Clima
- - **Acesse:** https://www.weatherapi.com/ e crie uma conta.
- -  Após criar a conta, obtenha a sua chave de API.
+
+- **Acesse:** https://www.weatherapi.com/ e crie uma conta.
+- Após criar a conta, obtenha a sua chave de API.
 
 ### 3. Crie o Arquivo .env
+
 Na raiz do projeto, crie um arquivo .env com o seguinte conteúdo:
+
 ```bash
 WEATHER_API_KEY=sua_chave_api
 ```
 
 ### 4. Instale as Dependências
+
 No diretório do projeto, execute:
+
 ```bash
 cd weather-forecast-app
 npm install
 ```
 
 ### 5. Inicie o Servidor
+
 Para rodar o projeto localmente, execute o comando:
+
 ```bash
 npm run dev
 ```

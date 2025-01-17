@@ -1,17 +1,17 @@
 .graphic-container {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
+   width: 100%;
+   max-width: 600px;
+   margin: 0 auto;
+   padding: 20px;
 }
 
 canvas {
-    width: 100% !important;
-    height: auto !important;
+   width: 100% !important;
+   height: auto !important;
 }
 
 @media (max-width: 768px) {
-    .graphic-container {
-        max-width: 90%;
-    }
+   .graphic-container {
+      max-width: 90%;
+   }
 }
