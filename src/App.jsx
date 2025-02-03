@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import { WeatherInfo } from './Components/WeatherInfo';
 import { ForecastInfo } from './Components/ForecastInfo';
+import { AdBanner } from './Components/AdBanner';
 
 function App() {
    const [city, setCity] = useState('');
@@ -10,6 +11,7 @@ function App() {
       <div className="App">
          <header className="App-header">
             <WeatherInfo city={city} />
+            <AdBanner />
             <ForecastInfo city={city} />
 
             <div className="search-box">
