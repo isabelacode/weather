@@ -16,9 +16,11 @@ export const AdBanner = () => {
             document.head.appendChild(script);
          }
 
-         // Verifica se o objeto adsbygoogle já existe antes de chamar push
-         if (window.adsbygoogle) {
+         // Verifica se o objeto adsbygoogle já existe e se o elemento ainda não tem um anúncio
+         const adElement = document.querySelector('.adsbygoogle');
+         if (window.adsbygoogle && !adElement.hasAttribute('data-ad-status')) {
             (window.adsbygoogle = window.adsbygoogle || []).push({});
+            adElement.setAttribute('data-ad-status', 'loaded'); // Marca como carregado
          }
       } catch (e) {
          console.error('Falha ao carregar o anúncio:', e);
