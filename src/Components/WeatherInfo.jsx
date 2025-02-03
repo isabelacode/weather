@@ -15,7 +15,7 @@ export const WeatherInfo = ({ city }) => {
             setError(null);
             setIsLoading(true);
             const response = await axios.get(
-               `http://localhost:5000/api/current?query=${query}`
+               `${process.env.REACT_APP_API_URL}/api/current?query=${query}`
             );
             setWeather(response.data);
             setIsLoading(false);

@@ -16,10 +16,10 @@ app.get('/api/forecast', async (req, res) => {
       const apiKey = process.env.WEATHER_API_KEY;
 
       const response = await axios.get(
-         `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${query}&days=6&aqi=no&alerts=no&lang=pt`
+         `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${query}&days=5&aqi=no&alerts=no&lang=pt`
       );
 
-      const futureForecast = response.data.forecast.forecastday.slice(1);
+      const futureForecast = response.data.forecast.forecastday;
       res.json(futureForecast);
    } catch (error) {
       console.error('Erro ao buscar previsão:', error);

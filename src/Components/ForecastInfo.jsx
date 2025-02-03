@@ -5,13 +5,12 @@ import './ForecastInfo.css';
 export const ForecastInfo = ({ city }) => {
    const [forecast, setForecast] = useState(null);
    const [error, setError] = useState(null);
-
    useEffect(() => {
       const fetchForecast = async (query) => {
          try {
             setError(null);
             const response = await axios.get(
-               `http://localhost:5000/api/forecast?query=${query}`
+               `${process.env.REACT_APP_API_URL}/api/forecast?query=${query}`
             );
 
             setForecast(response.data);
@@ -57,7 +56,7 @@ export const ForecastInfo = ({ city }) => {
          {error && <p className="error-message">{error}</p>}
          {forecast && (
             <div>
-               <h2>Previsão para os próximos 5 dias</h2>
+               <h2>Previsão para os próximos dias</h2>
                <ul>
                   {forecast.map((day) => (
                      <li key={day.date} className="forecast-day">
