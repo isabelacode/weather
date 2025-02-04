@@ -1,40 +1,31 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 export const AdBanner = () => {
-   useEffect(() => {
-      try {
-         // Verifica se o script já foi carregado
-         if (
-            !document.querySelector(
-               'script[src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]'
-            )
-         ) {
-            const script = document.createElement('script');
-            script.async = true;
-            script.src =
-               'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
-            document.head.appendChild(script);
-         }
+   const adRef = useRef(null); // Referência para evitar múltiplas execuções
 
-         // Verifica se o objeto adsbygoogle já existe e se o elemento ainda não tem um anúncio
-         const adElement = document.querySelector('.adsbygoogle');
-         if (window.adsbygoogle && !adElement.hasAttribute('data-ad-status')) {
-            (window.adsbygoogle = window.adsbygoogle || []).push({});
-            adElement.setAttribute('data-ad-status', 'loaded'); // Marca como carregado
+   useEffect(() => {
+      if (window.adsbygoogle && adRef.current) {
+         try {
+            // Só executa se ainda não tiver sido carregado
+            if (!adRef.current.dataset.loaded) {
+               window.adsbygoogle.push({});
+               adRef.current.dataset.loaded = 'true'; // Marca o elemento como carregado
+            }
+         } catch (e) {
+            console.error('Falha ao carregar o anúncio:', e);
          }
-      } catch (e) {
-         console.error('Falha ao carregar o anúncio:', e);
       }
    }, []);
 
    return (
       <ins
+         ref={adRef}
          className="adsbygoogle"
          style={{ display: 'block' }}
          data-ad-format="fluid"
          data-ad-layout-key="-fb+5w+4e-db+86"
-         data-ad-client={process.env.REACT_APP_AD_CLIENT} // Usando a variável de ambiente
-         data-ad-slot={process.env.REACT_APP_AD_SLOT} // Usando a variável de ambiente
+         data-ad-client={process.env.REACT_APP_AD_CLIENT} // Variável de ambiente
+         data-ad-slot={process.env.REACT_APP_AD_SLOT} // Variável de ambiente
       ></ins>
    );
 };
