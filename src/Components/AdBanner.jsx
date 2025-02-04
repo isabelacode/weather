@@ -1,31 +1,38 @@
-import { useEffect, useRef } from 'react';
-
 export const AdBanner = () => {
-   const adRef = useRef(null); // Referência para evitar múltiplas execuções
-
+   const adRef = useRef(null);
+ 
    useEffect(() => {
-      if (window.adsbygoogle && adRef.current) {
+     const loadAd = () => {
+       if (adRef.current && !adRef.current.dataset.loaded) {
          try {
-            // Só executa se ainda não tiver sido carregado
-            if (!adRef.current.dataset.loaded) {
-               window.adsbygoogle.push({});
-               adRef.current.dataset.loaded = 'true'; // Marca o elemento como carregado
-            }
+           (window.adsbygoogle = window.adsbygoogle || []).push({});
+           adRef.current.dataset.loaded = "true";
          } catch (e) {
-            console.error('Falha ao carregar o anúncio:', e);
+           console.error('Erro ao carregar anúncio:', e);
          }
-      }
+       }
+     };
+ 
+     if (window.adsbygoogle) {
+       loadAd();
+     } else {
+       document.addEventListener('adsbygoogle:loaded', loadAd);
+     }
+ 
+     return () => {
+       document.removeEventListener('adsbygoogle:loaded', loadAd);
+     };
    }, []);
-
+ 
    return (
-      <ins
-         ref={adRef}
-         className="adsbygoogle"
-         style={{ display: 'block' }}
-         data-ad-format="fluid"
-         data-ad-layout-key="-fb+5w+4e-db+86"
-         data-ad-client={process.env.REACT_APP_AD_CLIENT} // Variável de ambiente
-         data-ad-slot={process.env.REACT_APP_AD_SLOT} // Variável de ambiente
-      ></ins>
+     <ins
+       ref={adRef}
+       className="adsbygoogle"
+       style={{ display: 'block' }}
+       data-ad-client="ca-pub-3869842878920222"
+       data-ad-slot="1460893116"
+       data-ad-format="fluid"
+       data-ad-layout-key="-fb+5v+4k-d3+7b"
+     ></ins>
    );
-};
+ };
