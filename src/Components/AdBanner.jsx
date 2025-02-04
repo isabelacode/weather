@@ -28,13 +28,11 @@ export const AdBanner = () => {
 
    return (
       <ins
-         ref={adRef}
          className="adsbygoogle"
-         style={{ display: 'block' }}
+         style={{ display: 'block', height: '90px' }} // 728x90
          data-ad-client="ca-pub-3869842878920222"
          data-ad-slot="1460893116"
-         data-ad-format="fluid"
-         data-ad-layout-key="-fb+5v+4k-d3+7b"
+         data-ad-format="horizontal"
       ></ins>
    );
 };
