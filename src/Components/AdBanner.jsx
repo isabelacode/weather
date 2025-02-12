@@ -1,38 +1,27 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 export const AdBanner = () => {
-   const adRef = useRef(null);
-
    useEffect(() => {
-      const loadAd = () => {
-         if (adRef.current && !adRef.current.dataset.loaded) {
-            try {
-               (window.adsbygoogle = window.adsbygoogle || []).push({});
-               adRef.current.dataset.loaded = 'true';
-            } catch (e) {
-               console.error('Erro ao carregar anúncio:', e);
-            }
+      try {
+         const adsElement = document.querySelector('.adsbygoogle');
+         if (!adsElement.hasAttribute('data-ad-client')) {
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
          }
-      };
-
-      if (window.adsbygoogle) {
-         loadAd();
-      } else {
-         document.addEventListener('adsbygoogle:loaded', loadAd);
+      } catch (err) {
+         console.error(err.message);
       }
-
-      return () => {
-         document.removeEventListener('adsbygoogle:loaded', loadAd);
-      };
    }, []);
 
    return (
-      <ins
-         className="adsbygoogle"
-         style={{ display: 'block', height: '90px' }} // 728x90
-         data-ad-client="ca-pub-3869842878920222"
-         data-ad-slot="1460893116"
-         data-ad-format="horizontal"
-      ></ins>
+      <>
+         <ins
+            className="adsbygoogle"
+            style={{ display: 'block', height: '90px' }}
+            data-ad-format="fluid"
+            data-ad-layout-key="-fb+5w+4e-db+86"
+            data-ad-client="ca-pub-3869842878920222"
+            data-ad-slot="6802667364"
+         ></ins>
+      </>
    );
 };
