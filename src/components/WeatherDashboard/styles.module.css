@@ -1,0 +1,27 @@
+.weatherDashboard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5rem;
+}
+
+.weatherTemperatura {
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+}
+
+.weatherTemperatura svg {
+    margin-right: 1rem;
+    width: 5rem;
+    height: 5rem;
+}
+
+
+.weatherDetails {
+    width: 50%;
+    display: flex;
+
+    justify-content: space-between;
+}

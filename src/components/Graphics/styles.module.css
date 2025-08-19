@@ -1,0 +1,72 @@
+.container {
+    margin-top: 3rem;
+    padding: 0 2rem;
+}
+
+.graphicsLinks {
+    display: flex;
+    margin-bottom: 2rem;
+    margin-left: 20%;
+}
+
+.graphicsLinks p {
+    margin: 0 1rem;
+    color: var(--text-muted);
+}
+
+.graphicsLinks a {
+    text-decoration: none;
+    color: var(--text-muted);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.graphicsLinks a:hover {
+    background-color: var(--gray-800);
+    color: var(--text-default);
+}
+
+.graphicsLinks a.active {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.graphicsLinks a.active::after {
+    content: "";
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background-color: var(--primary);
+}
+
+.chartContainer {
+    background: transparent;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin: 0 auto;
+    max-width: 800px;
+    position: relative;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.chartContainer::before {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: 2rem;
+    right: 2rem;
+    height: 1px;
+    background: repeating-linear-gradient(
+        to right,
+        transparent,
+        transparent 5px,
+        rgba(255, 255, 255, 0.2) 5px,
+        rgba(255, 255, 255, 0.2) 10px
+    );
+    pointer-events: none;
+}
