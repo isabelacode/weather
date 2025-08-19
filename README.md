@@ -1,55 +1,69 @@
-# Weather Forecast Application
+# React + TypeScript + Vite
 
-Este projeto é uma aplicação de previsão do tempo desenvolvida em **React JS**, que utiliza a API da Weather para fornecer previsões precisas com visualizações gráficas intuitivas e detalhes sobre o clima atual e futuro.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Funcionalidades Principais
+Currently, two official plugins are available:
 
-- **Clima Atual**: Exibe informações sobre o clima atual, como temperatura, umidade e condições climáticas.
-- **Previsão de 5 Dias**: Mostra a previsão do tempo para os próximos cinco dias, incluindo as temperaturas máximas e mínimas.
-- **Gráfico de 8 Horas**: Apresenta um gráfico detalhado com dados de temperatura e condições climáticas para as próximas oito horas.
-- **Detalhamento Horário**: Permite ao usuário selecionar uma hora específica para exibir informações detalhadas do clima.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Tecnologias Utilizadas
+## Expanding the ESLint configuration
 
-- **React JS**: Biblioteca principal para a criação de componentes interativos.
-- **Axios**: Para fazer requisições à API da Weather.
-- **Chart.js**: Para criar gráficos interativos e responsivos.
-- **CSS**: Para a estilização dos componentes.
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-## Como Executar o Projeto
+```js
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-### 1. Clone o Repositório
+      // Remove tseslint.configs.recommended and replace with this
+      ...tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      ...tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      ...tseslint.configs.stylisticTypeChecked,
 
-```bash
-git clone https://github.com/isabelacode/weather-app
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-### 2. Crie sua Conta na API de Clima
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-- **Acesse:** https://www.weatherapi.com/ e crie uma conta.
-- Após criar a conta, obtenha a sua chave de API.
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-### 3. Crie o Arquivo .env
-
-Na raiz do projeto, crie um arquivo .env com o seguinte conteúdo:
-
-```bash
-WEATHER_API_KEY=sua_chave_api
-```
-
-### 4. Instale as Dependências
-
-No diretório do projeto, execute:
-
-```bash
-cd weather-forecast-app
-npm install
-```
-
-### 5. Inicie o Servidor
-
-Para rodar o projeto localmente, execute o comando:
-
-```bash
-npm run dev
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```

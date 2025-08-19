@@ -1,0 +1,68 @@
+:root {
+  --gray-100: #e6e9f0;
+  --gray-200: #cdd3e1;
+  --gray-300: #aab3cc;
+  --gray-400: #555f7d;
+  --gray-500: #454f6a;
+  --gray-600: #363d56;
+  --gray-700: #272f43;
+  --gray-800: #181f2e;
+  --gray-900: #0a0f1a;
+
+  --primary-light: #ac74cc;
+  --primary: #6a1f96;
+  --primary-dark: #4e1072;
+  --link-color: #a868cd;
+  --link-hover: #733b94;
+
+  --success: #22c55e;
+  --warning: #eab308;
+  --error: #991b1b;
+  --info: #0ea5e9;
+
+  --text-over-primary: #0a0f1a;
+  --text-over-primary-dark: #e6e9f0;
+  --text-over-primary-light: #0a0f1a;
+  --text-over-success: #0a0f1a;
+  --text-over-warning: #0a0f1a;
+  --text-over-error: #e6e9f0;
+  --text-over-info: #0a0f1a;
+
+  --text-default: #e6e9f0;
+  --text-muted: #aab3cc;
+
+  --disabled: #555f7d;
+  --text-disabled: #aab3cc;
+
+  --toastify-color-light: var(--text-default);
+  --toastify-color-dark: var(--text-default);
+  --toastify-color-info: var(--info);
+  --toastify-color-success: var(--success);
+  --toastify-color-warning: var(--warning);
+  --toastify-color-error: var(--error);
+  --toastify-text-color-light: #0a0f1a;
+  --toastify-text-color-dark: #e6e9f0;
+  --toastify-color-progress-light: var(--primary);
+  --toastify-color-progress-dark: var(--primary);
+}
+
+:root[data-theme="light"] {
+  --gray-100: #0a0f1a;
+  --gray-200: #181f2e;
+  --gray-300: #272f43;
+  --gray-400: #363d56;
+  --gray-500: #454f6a;
+  --gray-600: #555f7d;
+  --gray-700: #aab3cc;
+  --gray-800: #cdd3e1;
+  --gray-900: #e6e9f0;
+
+  --text-default: #0a0f1a;
+  --text-muted: #272f43;
+
+  --link-color: #0b8a60;
+  --link-hover: #065f46;
+
+  --toastify-text-color-light: #e6e9f0;
+  --toastify-text-color-dark: #e6e9f0;
+}
