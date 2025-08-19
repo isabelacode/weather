@@ -117,11 +117,11 @@ export function Graphics() {
                         <defs>
                             <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
                                 <stop offset="5%" stopColor={
-                                    activeGraph === "temperature" ? "#eab308" :
+                                    activeGraph === "temperature" ? "#8c08eaff" :
                                         activeGraph === "humidity" ? "#0ea5e9" : "#22c55e"
                                 } stopOpacity={0.8} />
                                 <stop offset="95%" stopColor={
-                                    activeGraph === "temperature" ? "#eab308" :
+                                    activeGraph === "temperature" ? "#8c08eaff" :
                                         activeGraph === "humidity" ? "#0ea5e9" : "#22c55e"
                                 } stopOpacity={0.1} />
                             </linearGradient>
@@ -137,7 +137,7 @@ export function Graphics() {
                             type="monotone"
                             dataKey="value"
                             stroke={
-                                activeGraph === "temperature" ? "#eab308" :
+                                activeGraph === "temperature" ? "#8c08eaff" :
                                     activeGraph === "humidity" ? "#0ea5e9" : "#22c55e"
                             }
                             strokeWidth={3}

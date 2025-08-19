@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Coordinates } from '../components/Coordinates';
+import { Coordinates as GetCoordinates } from '../components/Coordinates';
+import { useWeatherContext } from './useWeatherContext';
 
 export interface HourlyWeatherData {
   time: string;
@@ -7,6 +8,13 @@ export interface HourlyWeatherData {
   relative_humidity_2m: number;
   wind_speed_10m: number;
   weather_code: number;
+}
+
+export interface DailyWeatherData {
+  date: string;
+  weather_code: number;
+  temperature_2m_max: number;
+  temperature_2m_min: number;
 }
 
 export interface WeatherDataResponse {
@@ -17,19 +25,36 @@ export interface WeatherDataResponse {
     wind_speed_10m: number[];
     weather_code: number[];
   };
+  daily?: {
+    time: string[];
+    weather_code: number[];
+    temperature_2m_max: number[];
+    temperature_2m_min: number[];
+  };
 }
 
 export function useWeatherData() {
   const [data, setData] = useState<HourlyWeatherData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { coordinates, setCoordinates } = useWeatherContext();
 
   useEffect(() => {
     async function fetchHourlyWeatherData() {
       try {
         setLoading(true);
-        const coordinates = await Coordinates();
-        const { latitude, longitude } = coordinates;
+        setError(null);
+        
+        let coords = coordinates;
+        
+        // Se não há coordenadas no contexto, usar localização do usuário
+        if (!coords) {
+          const userCoordinates = await GetCoordinates();
+          coords = userCoordinates;
+          setCoordinates(userCoordinates);
+        }
+
+        const { latitude, longitude } = coords;
 
         // Buscar dados horários das próximas 48 horas (2 dias) para garantir dados suficientes
         const response = await fetch(
@@ -78,7 +103,7 @@ export function useWeatherData() {
     }
 
     fetchHourlyWeatherData();
-  }, []);
+  }, [coordinates, setCoordinates]);
 
   return { data, loading, error };
 }

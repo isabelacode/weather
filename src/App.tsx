@@ -4,6 +4,9 @@ import { Header } from "./components/Header";
 import {WeatherDashboard} from "./components/WeatherDashboard";
 import  { Graphics } from "./components/Graphics";
 import { WeatherProvider } from "./contexts/WeatherProvider";
+import { Forecast } from "./components/Forecast";
+import { Search } from "./components/Search";
+
 
 function App() {
 
@@ -13,14 +16,9 @@ function App() {
       <WeatherDashboard />
       <Graphics />
 
-      <div>
-        <h1>previsao semanal</h1>
-      </div>
+      <Forecast />
 
-      <div>
-        <input type="text" />
-        <button>pesquisar por cidade</button>
-      </div>
+      <Search />
     </WeatherProvider>
   )
 }

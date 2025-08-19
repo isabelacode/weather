@@ -44,7 +44,11 @@ export function Header() {
             <h1 className={styles.headerTitle}>
                 {loading && "Detectando localização..."}
                 {error && "Localização não disponível"}
-                {location && `${location.city}, ${location.state}`}
+                {location && (
+                    location.state 
+                        ? `${location.city}, ${location.state}` 
+                        : location.city
+                )}
             </h1>
             <a
                 className={styles.menuLink}

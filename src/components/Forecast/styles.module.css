@@ -1,0 +1,134 @@
+.container {
+  background: var(--gray-800);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 24px;
+  margin: 20px auto;
+  border: 1px solid var(--gray-700);
+  max-width: 65%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    flex-direction: column;
+}
+
+.container h2 {
+  color: var(--text-default);
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.loading, .error {
+  color: var(--text-default);
+  text-align: center;
+  padding: 20px;
+  font-size: 1rem;
+}
+
+.error {
+  color: var(--error);
+}
+
+.forecastGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+  max-width: 100%;
+}
+
+.dayCard {
+  background: var(--gray-700);
+  border-radius: 12px;
+  padding: 16px 12px;
+  text-align: center;
+  border: 1px solid var(--gray-600);
+  transition: all 0.3s ease;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dayCard:hover {
+  background: var(--gray-600);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.dayName {
+  color: var(--text-default);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.weatherIcon {
+  font-size: 2rem;
+  margin: 8px 0;
+  line-height: 1;
+}
+
+.temperatures {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  align-items: center;
+  margin: 8px 0;
+  gap: 8px;
+}
+
+.maxTemp {
+  color: var(--text-default);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.minTemp {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.description {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  margin-top: 4px;
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+    margin: 16px auto;
+    max-width: 95%;
+  }
+  
+  .forecastGrid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 12px;
+  }
+  
+  .dayCard {
+    padding: 12px 8px;
+    min-height: 120px;
+  }
+  
+  .weatherIcon {
+    font-size: 1.5rem;
+  }
+  
+  .maxTemp {
+    font-size: 1rem;
+  }
+  
+  .minTemp {
+    font-size: 0.9rem;
+  }
+  
+  .description {
+    font-size: 0.7rem;
+  }
+}
