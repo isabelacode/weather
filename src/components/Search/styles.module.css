@@ -18,8 +18,13 @@
   border: 0.2rem solid transparent;
   border-bottom: 0.2rem solid var(--primary);
   font-size: 1rem;
+  color: var(--text-default);
   outline: none;
   transition: border-color 0.2s ease;
+}
+
+.searchInput::placeholder {
+  color: var(--text-muted);
 }
 
 
