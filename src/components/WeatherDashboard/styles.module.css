@@ -25,3 +25,27 @@
 
     justify-content: space-between;
 }
+
+@media(max-width: 768px) {
+    .weatherDashboard {
+        flex-direction: column;
+        margin-top: 2rem;
+        
+    }
+
+    .weatherTemperatura {
+        margin-right: 0;
+        margin-bottom: 2rem;
+    }
+
+    .weatherDetails {
+        width: 100%;
+        gap: 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .details-group{
+        gap: 5px
+    }
+}   

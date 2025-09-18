@@ -15,9 +15,7 @@ function App() {
       <Header />
       <WeatherDashboard />
       <Graphics />
-
       <Forecast />
-
       <Search />
     </WeatherProvider>
   )

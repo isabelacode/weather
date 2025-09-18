@@ -70,3 +70,15 @@
     );
     pointer-events: none;
 }
+
+@media (max-width: 768px) {
+    .graphicsLinks {
+        margin-left: 0;
+        flex-wrap: wrap;
+    }
+
+    .chartContainer {
+        width: 100%;
+        padding: 1rem;
+    }
+}
