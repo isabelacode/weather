@@ -7,7 +7,7 @@
 
 .headerTitle {
   font-size: 1.8em;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
 }
 
 .menuLink {
@@ -15,12 +15,13 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: var(--text-over-primary);
+  color: var(--text-disabled);
   background-color: var(--primary);
   transition: all 0.1s ease-in-out;
   padding: 0.5rem;
   border-radius: 0.8rem;
 }
+
 
 .menuLink:hover {
   filter: brightness(80%);

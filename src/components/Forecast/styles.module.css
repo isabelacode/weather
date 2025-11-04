@@ -98,7 +98,6 @@
   margin-top: 4px;
 }
 
-/* Responsividade para dispositivos móveis */
 @media (max-width: 768px) {
   .container {
     padding: 16px;
@@ -107,7 +106,7 @@
   }
   
   .forecastGrid {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
     gap: 12px;
   }
   

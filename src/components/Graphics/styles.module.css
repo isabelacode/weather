@@ -61,13 +61,11 @@
     left: 2rem;
     right: 2rem;
     height: 1px;
-    background: repeating-linear-gradient(
-        to right,
-        transparent,
-        transparent 5px,
-        rgba(255, 255, 255, 0.2) 5px,
-        rgba(255, 255, 255, 0.2) 10px
-    );
+    background: repeating-linear-gradient(to right,
+            transparent,
+            transparent 5px,
+            rgba(255, 255, 255, 0.2) 5px,
+            rgba(255, 255, 255, 0.2) 10px);
     pointer-events: none;
 }
 
@@ -75,6 +73,10 @@
     .graphicsLinks {
         margin-left: 0;
         flex-wrap: wrap;
+    }
+
+    .graphicsLinks {
+        margin-left: 3rem;
     }
 
     .chartContainer {

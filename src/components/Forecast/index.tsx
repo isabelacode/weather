@@ -30,7 +30,7 @@ export function Forecast() {
                 {data.map((day) => {
                     const weatherInfo = getWeatherInfo(day.weather_code);
                     const dayName = getDayName(day.date);
-                    
+
                     return (
                         <div key={day.date} className={styles.dayCard}>
                             <div className={styles.dayName}>

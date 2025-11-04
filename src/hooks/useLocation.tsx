@@ -15,8 +15,7 @@ export function useLocation() {
       try {
         setLoading(true);
         setError(null);
-        
-        // Se há uma cidade pesquisada, usar o nome da cidade diretamente
+
         if (currentCity) {
           setLocation({
             city: currentCity,
@@ -25,17 +24,15 @@ export function useLocation() {
           });
           return;
         }
-        
+
         let coords = coordinates;
-        
-        // Se não há coordenadas no contexto, usar localização do usuário
+
         if (!coords) {
           const userCoordinates = await GetCoordinates();
           coords = userCoordinates;
           setCoordinates(userCoordinates);
         }
-        
-        // Fazer reverse geocoding apenas para localização do usuário
+
         const locationInfo = await reverseGeocode(coords);
         setLocation(locationInfo);
       } catch (err) {

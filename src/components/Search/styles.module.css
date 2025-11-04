@@ -62,7 +62,7 @@
 .locationButton {
   padding: 0.5rem 1rem;
   background-color: var(--primary);
-  color: var( --gray-800);
+  color: var(--gray-800);
   border: none;
   border-radius: 6px;
   font-size: 0.9rem;
@@ -97,15 +97,15 @@
   .searchForm {
     flex-direction: column;
   }
-  
+
   .searchInput {
     width: 100%;
   }
-  
+
   .searchButton {
     width: 100%;
   }
-  
+
   .locationButton {
     width: 100%;
   }

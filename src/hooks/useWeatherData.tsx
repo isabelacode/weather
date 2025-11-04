@@ -44,10 +44,9 @@ export function useWeatherData() {
       try {
         setLoading(true);
         setError(null);
-        
+
         let coords = coordinates;
-        
-        // Se não há coordenadas no contexto, usar localização do usuário
+
         if (!coords) {
           const userCoordinates = await GetCoordinates();
           coords = userCoordinates;
@@ -56,7 +55,6 @@ export function useWeatherData() {
 
         const { latitude, longitude } = coords;
 
-        // Buscar dados horários das próximas 48 horas (2 dias) para garantir dados suficientes
         const response = await fetch(
           `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&timezone=auto&forecast_days=2`
         );
@@ -66,8 +64,7 @@ export function useWeatherData() {
         }
 
         const weatherData: WeatherDataResponse = await response.json();
-        
-        // Transformar todos os dados primeiro
+
         const allData: HourlyWeatherData[] = weatherData.hourly.time.map((time, index) => ({
           time,
           temperature_2m: weatherData.hourly.temperature_2m[index],
@@ -76,19 +73,16 @@ export function useWeatherData() {
           weather_code: weatherData.hourly.weather_code[index],
         }));
 
-        // Encontrar o índice da hora atual ou próxima
         const now = new Date();
         const currentHour = now.getHours();
-        
+
         const startIndex = allData.findIndex(item => {
           const itemDate = new Date(item.time);
           return itemDate.getHours() >= currentHour && itemDate >= now;
         });
 
-        // Se não encontrar, começar do primeiro item
         const validStartIndex = startIndex >= 0 ? startIndex : 0;
 
-        // Filtrar de 3 em 3 horas a partir do índice encontrado, máximo 8 intervalos
         const filteredData: HourlyWeatherData[] = [];
         for (let i = validStartIndex; i < allData.length && filteredData.length < 8; i += 3) {
           filteredData.push(allData[i]);

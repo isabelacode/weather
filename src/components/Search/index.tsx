@@ -10,7 +10,7 @@ export function Search() {
 
     const handleSearch = async (e: React.FormEvent) => {
         e.preventDefault();
-        
+
         if (!cityName.trim()) {
             setSearchError('Digite o nome de uma cidade');
             return;
@@ -22,7 +22,7 @@ export function Search() {
         try {
             await searchCity(cityName.trim());
             setSearchError(null);
-            setCityName(''); // Limpar o campo após busca bem-sucedida
+            setCityName(''); 
         } catch (error) {
             console.error('Erro capturado no Search:', error);
             const errorMessage = error instanceof Error ? error.message : 'Erro ao buscar cidade';
@@ -40,32 +40,32 @@ export function Search() {
     return (
         <div className={styles.container}>
             <form onSubmit={handleSearch} className={styles.searchForm}>
-                <input 
-                    type="text" 
+                <input
+                    type="text"
                     value={cityName}
                     onChange={(e) => setCityName(e.target.value)}
                     placeholder="Digite o nome da cidade..."
                     disabled={isSearching}
                     className={styles.searchInput}
                 />
-                <button 
-                    type="submit" 
+                <button
+                    type="submit"
                     disabled={isSearching}
                     className={styles.searchButton}
                 >
                     {isSearching ? 'Buscando...' : 'Pesquisar'}
                 </button>
             </form>
-            
+
             {currentCity && (
-                <button 
+                <button
                     onClick={handleUseCurrentLocation}
                     className={styles.locationButton}
                 >
                     Usar minha localização
                 </button>
             )}
-            
+
             {searchError && (
                 <p className={styles.error}>
                     {searchError}

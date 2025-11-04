@@ -22,9 +22,9 @@ export function WeatherProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <WeatherContext.Provider 
-      value={{ 
-        selectedHourData, 
+    <WeatherContext.Provider
+      value={{
+        selectedHourData,
         setSelectedHourData,
         coordinates,
         setCoordinates,

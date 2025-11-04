@@ -75,7 +75,7 @@ export function WeatherDashboard() {
         current: {
             temperature_2m: selectedHourData.temperature_2m,
             relative_humidity_2m: selectedHourData.relative_humidity_2m,
-            precipitation: 0, 
+            precipitation: 0,
             wind_speed_10m: selectedHourData.wind_speed_10m,
             weather_code: selectedHourData.weather_code,
             time: selectedHourData.time
@@ -127,12 +127,12 @@ export function WeatherDashboard() {
                 <p>{Math.round(displayData?.current.temperature_2m || 0)}°C</p>
             </div>
             <div className={styles.weatherDetails}>
-                <div className="details-group">
+                <div className={styles.detailsGroup}>
                     <p><Droplets size={16} /> Chuva: {displayData?.current.precipitation || 0}mm</p>
                     <p><Eye size={16} /> Umidade: {displayData?.current.relative_humidity_2m || 0}%</p>
                     <p><Wind size={16} /> Vento: {Math.round(displayData?.current.wind_speed_10m || 0)}km/h</p>
                 </div>
-                <div className="details-group">
+                <div className={styles.detailsGroupSecondary}>
                     <p>{selectedHourData ? 'Previsão para' : 'Clima'}</p>
                     <p>{formatDateTime(displayData?.current.time || new Date().toISOString())}</p>
                     <p>{getWeatherDescription(displayData?.current.weather_code || 0)}</p>

@@ -8,14 +8,13 @@ export interface LocationInfo {
 
 export async function reverseGeocode(coordinates: Coordinates): Promise<LocationInfo> {
   const { latitude, longitude } = coordinates;
-  
-  // Usando Nominatim (OpenStreetMap) - gratuito
+
   const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&addressdetails=1`;
-  
+
   try {
     const response = await fetch(url);
     const data = await response.json();
-    
+
     if (data && data.address) {
       const address = data.address;
       return {
@@ -24,7 +23,7 @@ export async function reverseGeocode(coordinates: Coordinates): Promise<Location
         country: address.country || 'País não encontrado'
       };
     }
-    
+
     throw new Error('Localização não encontrada');
   } catch (error) {
     console.error('Erro na geocodificação:', error);

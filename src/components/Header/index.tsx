@@ -45,8 +45,8 @@ export function Header() {
                 {loading && "Detectando localização..."}
                 {error && "Localização não disponível"}
                 {location && (
-                    location.state 
-                        ? `${location.city}, ${location.state}` 
+                    location.state
+                        ? `${location.city}, ${location.state}`
                         : location.city
                 )}
             </h1>

@@ -30,10 +30,9 @@ export function useWeatherForecast() {
       try {
         setLoading(true);
         setError(null);
-        
+
         let coords = coordinates;
-        
-        // Se não há coordenadas no contexto, usar localização do usuário
+
         if (!coords) {
           const userCoordinates = await GetCoordinates();
           coords = userCoordinates;
@@ -42,7 +41,6 @@ export function useWeatherForecast() {
 
         const { latitude, longitude } = coords;
 
-        // Buscar dados diários dos próximos 7 dias
         const response = await fetch(
           `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=7`
         );
@@ -52,13 +50,11 @@ export function useWeatherForecast() {
         }
 
         const weatherData: DailyWeatherDataResponse = await response.json();
-        
-        // Obter as datas dos próximos 7 dias a partir de hoje
+
         const next7Days = getNext7Days();
-        
-        // Filtrar apenas os dados das datas desejadas
+
         const filteredData: DailyWeatherData[] = [];
-        
+
         next7Days.forEach(targetDate => {
           const dataIndex = weatherData.daily.time.findIndex(date => date === targetDate);
           if (dataIndex !== -1) {
@@ -69,10 +65,10 @@ export function useWeatherForecast() {
               temperature_2m_min: weatherData.daily.temperature_2m_min[dataIndex],
             });
           } else {
-            // Fallback caso não tenhamos dados para essa data
+
             filteredData.push({
               date: targetDate,
-              weather_code: 0, // Céu limpo como padrão
+              weather_code: 0,
               temperature_2m_max: 25,
               temperature_2m_min: 15,
             });
